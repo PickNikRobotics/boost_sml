@@ -25,7 +25,6 @@ find_package(Boost REQUIRED)
 catkin_package(
   CATKIN_DEPENDS
     roscpp
-    rospy
   INCLUDE_DIRS
     include
   LIBRARIES
