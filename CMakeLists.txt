@@ -32,7 +32,6 @@ catkin_package(
   DEPENDS
     Boost
 )
-catkin_python_setup()
 
 ###########
 ## Build ##
