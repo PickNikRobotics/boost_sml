@@ -27,8 +27,6 @@ catkin_package(
     roscpp
   INCLUDE_DIRS
     include
-  LIBRARIES
-    ${PROJECT_NAME}
   DEPENDS
     Boost
 )
