@@ -76,7 +76,7 @@ install(
 # Mark cpp header files for installation
 install(
   DIRECTORY
-    include/
+    include/${PROJECT_NAME}/
   DESTINATION
     ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
