@@ -49,7 +49,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(
+add_executable(
   ${PROJECT_NAME}
   src/example.cpp
 )
@@ -76,8 +76,7 @@ install(
 # Mark cpp header files for installation
 install(
   DIRECTORY
-    include/boost/
-    include/${PROJECT_NAME}/
+    include/
   DESTINATION
     ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
