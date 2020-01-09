@@ -45,7 +45,7 @@ using StateMachine = sml::sm<StateMachineLogic, sml::logger<SmlRosLogger>>;
 
 }  // annonomous namespace
 
-int main(int argc, char** argv)
+int example_main(int argc, char** argv)
 {
   const std::string node_name = "sml_example";
 
