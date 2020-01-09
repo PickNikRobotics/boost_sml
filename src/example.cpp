@@ -43,7 +43,7 @@ struct StateMachineLogic
 
 using StateMachine = sml::sm<StateMachineLogic, sml::logger<SmlRosLogger>>;
 
-}  // annonomous namespace
+}  // anonymous namespace
 
 int example_main(int argc, char** argv)
 {
