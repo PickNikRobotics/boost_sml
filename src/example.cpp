@@ -9,7 +9,7 @@
 #include <ros/ros.h>
 
 // [boost].SML
-#include <boost/sml.hpp>
+#include <boost_sml/sml.hpp>
 #include <boost_sml/logger.h>
 
 namespace
