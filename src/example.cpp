@@ -17,7 +17,9 @@ namespace
 namespace sml = boost::sml;
 
 // Events
-struct Spin{};
+struct Spin
+{
+};
 
 // Actions
 const auto do_sense = []() { ROS_INFO("do_sense"); };
@@ -45,7 +47,7 @@ using StateMachine = sml::sm<StateMachineLogic, sml::logger<SmlRosLogger>>;
 
 }  // anonymous namespace
 
-int main(int argc, char** argv)
+int example_main(int argc, char** argv)
 {
   const std::string node_name = "sml_example";
 

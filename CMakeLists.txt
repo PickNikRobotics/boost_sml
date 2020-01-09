@@ -49,7 +49,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(
+add_library(
   ${PROJECT_NAME}
   src/example.cpp
 )
