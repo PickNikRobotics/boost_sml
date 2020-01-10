@@ -9,7 +9,7 @@
 #include <ros/ros.h>
 
 // [boost].SML
-#include <boost/sml.hpp>
+#include <boost_sml/sml.hpp>
 #include <boost_sml/logger.h>
 
 namespace
@@ -17,7 +17,9 @@ namespace
 namespace sml = boost::sml;
 
 // Events
-struct Spin{};
+struct Spin
+{
+};
 
 // Actions
 const auto do_sense = []() { ROS_INFO("do_sense"); };

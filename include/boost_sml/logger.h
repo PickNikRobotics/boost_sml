@@ -11,7 +11,7 @@
 #include <ros/ros.h>
 
 // [boost].SML
-#include <boost/sml.hpp>
+#include <boost_sml/sml.hpp>
 
 // logger struct
 struct SmlRosLogger
