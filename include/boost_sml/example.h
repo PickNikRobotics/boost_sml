@@ -24,7 +24,7 @@ struct StateMachineLogic
     using sml::event;
     using sml::operator""_s;
     using sml::X;
-    
+
     // clang-format off
     return sml::make_transition_table(
       *"idle"_s     + event<Spin>              = "sensing"_s,
