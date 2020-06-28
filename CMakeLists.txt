@@ -60,6 +60,8 @@ target_link_libraries(
   ${Boost_LIBRARIES}
 )
 
+add_executable(sml_graph_demo src/sml_graph_demo.cpp)
+
 #############
 ## Install ##
 #############

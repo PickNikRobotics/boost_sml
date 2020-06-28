@@ -8,44 +8,8 @@
 // ROS
 #include <ros/ros.h>
 
-// [boost].SML
-#include <boost_sml/sml.hpp>
-#include <boost_sml/logger.h>
-
-namespace
-{
-namespace sml = boost::sml;
-
-// Events
-struct Spin
-{
-};
-
-// Actions
-const auto do_sense = []() { ROS_INFO("do_sense"); };
-const auto do_plan = []() { ROS_INFO("do_plan"); };
-const auto do_execute = []() { ROS_INFO("do_execute"); };
-
-struct StateMachineLogic
-{
-  auto operator()() const
-  {
-    using sml::event;
-    using sml::operator""_s;
-    using sml::X;
-
-    // clang-format off
-    return sml::make_transition_table(
-      *"idle"_s     + event<Spin>              = "sensing"_s,
-      "sensing"_s   + event<Spin> / do_sense   = "planning"_s,
-      "planning"_s  + event<Spin> / do_plan    = "executing"_s,
-      "executing"_s + event<Spin> / do_execute = X);
-  }
-};
-
-using StateMachine = sml::sm<StateMachineLogic, sml::logger<SmlRosLogger>>;
-
-}  // anonymous namespace
+#include <boost_sml/example.h>
+using namespace sml_example;
 
 int example_main(int argc, char** argv)
 {
@@ -63,7 +27,7 @@ int example_main(int argc, char** argv)
   Spin spin{};
 
   ros::Rate loop_rate(1);
-  while(ros::ok() && !state_machine.is(boost::sml::X))
+  while (ros::ok() && !state_machine.is(boost::sml::X))
   {
     state_machine.process_event(spin);
     ros::spinOnce();
