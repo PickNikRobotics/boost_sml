@@ -5,7 +5,8 @@ using StateMachine = boost::sml::sm<sml_example::StateMachineLogic>;
 
 int main()
 {
-  SmlTransitionGraph<StateMachine> graph;
+  StateMachine sml;
+  sml_transition_graph::SmlTransitionGraph graph(sml);
   graph.write_graphiz();
 
   std::cout << "----------------------------------------\n";
