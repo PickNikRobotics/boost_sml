@@ -7,6 +7,14 @@ int main()
 {
   StateMachine sml;
   sml_transition_graph::SmlTransitionGraph graph(sml);
+
+  const std::string output_filename = "/tmp/sml_transition_diagram.dot";
+  std::ofstream dot_file(output_filename);
+  std::cout << "Saving sml tranistion diagram to: `" << output_filename << "`\n";
+  std::cout << "You can view it by running `rosrun boost_sml sml_viewer --file=" << output_filename << "`\n";
+  graph.write_graphiz(dot_file);
+
+  std::cout << "----------------------------------------\n";
   graph.write_graphiz();
 
   std::cout << "----------------------------------------\n";
