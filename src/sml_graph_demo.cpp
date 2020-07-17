@@ -7,6 +7,16 @@ int main()
 {
   StateMachine sml;
   sml_transition_graph::SmlTransitionGraph graph(sml);
+
+  const std::string output_filename_dot = "/tmp/sml_transition_diagram.dot";
+  const std::string output_filename_png = "/tmp/sml_transition_diagram.png";
+  std::ofstream dot_file(output_filename_dot);
+  std::cout << "Saving sml tranistion diagram to: `" << output_filename_dot << "`\n";
+  graph.write_graphiz(dot_file);
+  std::cout << "You can visualize it by running `dot -Tpng " << output_filename_dot << " > " << output_filename_png
+            << " && xdg-open " << output_filename_png << "`\n";
+
+  std::cout << "----------------------------------------\n";
   graph.write_graphiz();
 
   std::cout << "----------------------------------------\n";
