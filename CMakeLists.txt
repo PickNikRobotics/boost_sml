@@ -83,30 +83,6 @@ install(
     ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 
-################
-## sml viewer ##
-################
-
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
-
-add_executable(sml_viewer
-    src/sml_viewer.cpp)
-
-target_link_libraries(sml_viewer PRIVATE Qt5::Widgets)
-
-# Install sml_viewer
-install(
-  TARGETS
-    sml_viewer
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-)
-
 #############
 ## Testing ##
 #############
