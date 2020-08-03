@@ -60,13 +60,15 @@ target_link_libraries(
   ${Boost_LIBRARIES}
 )
 
+add_executable(sml_graph_demo src/sml_graph_demo.cpp)
+
 #############
 ## Install ##
 #############
 
 # Install library
 install(
-  TARGETS 
+  TARGETS
     ${PROJECT_NAME}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
