@@ -27,7 +27,7 @@ class SmlTransitionGraph: public graph_t
 {
 public:
   using edge_t = std::pair<std::string, std::string>;
-  static const vertex_descriptor NIL = std::numeric_limits<vertex_descriptor>::max();
+  const vertex_descriptor NIL = std::numeric_limits<vertex_descriptor>::max();
 
   template <class SM>
   SmlTransitionGraph(const SM& sm)
