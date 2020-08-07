@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(boost_sml)
 
-# C++ 14
-add_compile_options(-std=c++14)
+# C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 # Warnings
 add_definitions(-W -Wall -Wextra
