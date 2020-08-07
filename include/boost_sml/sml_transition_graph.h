@@ -27,7 +27,7 @@ class SmlTransitionGraph: public graph_t
 {
 public:
   using edge_t = std::pair<std::string, std::string>;
-  static constexpr vertex_descriptor NIL = std::numeric_limits<vertex_descriptor>::max();
+  static const vertex_descriptor NIL = std::numeric_limits<vertex_descriptor>::max();
 
   template <class SM>
   SmlTransitionGraph(const SM& sm)
@@ -70,7 +70,7 @@ public:
 
   std::vector<vertex_descriptor> find_predecessors(const vertex_descriptor& start_vertex)
   {
-    std::vector<vertex_descriptor> predecessors(boost::num_vertices(*this), std::numeric_limits<vertex_descriptor>::max());
+    std::vector<vertex_descriptor> predecessors(boost::num_vertices(*this), NIL);
     boost::breadth_first_search(
         *this, start_vertex,
         boost::visitor(boost::make_bfs_visitor(boost::record_predecessors(&predecessors[0], boost::on_tree_edge()))));
