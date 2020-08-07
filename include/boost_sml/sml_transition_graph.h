@@ -70,7 +70,7 @@ public:
 
   std::vector<vertex_descriptor> find_predecessors(const vertex_descriptor& start_vertex)
   {
-    std::vector<vertex_descriptor> predecessors(boost::num_vertices(*this),NIL  );
+    std::vector<vertex_descriptor> predecessors(boost::num_vertices(*this), std::numeric_limits<vertex_descriptor>::max());
     boost::breadth_first_search(
         *this, start_vertex,
         boost::visitor(boost::make_bfs_visitor(boost::record_predecessors(&predecessors[0], boost::on_tree_edge()))));
