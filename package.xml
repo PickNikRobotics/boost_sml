@@ -18,7 +18,6 @@
 
   <depend>roscpp</depend>
   <depend>roslint</depend>
-  <depend version_eq="3.9">clang-format</depend>
 
   <test_depend>rostest</test_depend>
   <test_depend>rosunit</test_depend>
