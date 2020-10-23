@@ -18,6 +18,7 @@
 
   <depend>roscpp</depend>
   <depend>roslint</depend>
+  <depend>boost</depend>
 
   <test_depend>rostest</test_depend>
   <test_depend>rosunit</test_depend>
