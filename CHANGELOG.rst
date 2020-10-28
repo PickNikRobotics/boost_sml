@@ -2,6 +2,12 @@
 Changelog for package boost_sml
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.1 (2020-10-28)
+------------------
+* Add system component to boost cmake include
+* Add boost as dependency in package.xml
+* Contributors: Tyler Weaver
+
 0.1.0 (2020-10-13)
 ------------------
 * [feature] Generate SML diagrams using boost.Graph (`#4 <https://github.com/PickNikRobotics/boost_sml/issues/4>`_)
