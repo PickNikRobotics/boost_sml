@@ -2,6 +2,12 @@
 Changelog for package boost_sml
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.2 (2021-04-20)
+------------------
+* Add GitHub actions (`#7 <https://github.com/PickNikRobotics/boost_sml/issues/7>`_)
+* Fix Debian Buster build
+* Contributors: Tyler Weaver
+
 0.1.1 (2020-10-28)
 ------------------
 * Add system component to boost cmake include
