@@ -26,7 +26,6 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-
 /* Author: Tyler Weaver
    Desc: Simple example using the [boost].SML library
 */
@@ -35,13 +34,11 @@
 #include <string>
 
 // ROS
-#include <ros/ros.h>
-
 #include <boost_sml/example.h>
+#include <ros/ros.h>
 using namespace sml_example;
 
-int example_main(int argc, char** argv)
-{
+int example_main(int argc, char** argv) {
   const std::string node_name = "sml_example";
 
   // Initialize ROS
@@ -52,12 +49,11 @@ int example_main(int argc, char** argv)
   spinner.start();
 
   SmlRosLogger logger(node_name);
-  StateMachine state_machine{ logger };
+  StateMachine state_machine{logger};
   Spin spin{};
 
   ros::Rate loop_rate(1);
-  while (ros::ok() && !state_machine.is(boost::sml::X))
-  {
+  while (ros::ok() && !state_machine.is(boost::sml::X)) {
     state_machine.process_event(spin);
     ros::spinOnce();
     loop_rate.sleep();

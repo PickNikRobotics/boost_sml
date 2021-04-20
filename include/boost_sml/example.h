@@ -26,30 +26,26 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-
 #pragma once
 
 // [boost].SML
-#include <boost_sml/sml.hpp>
 #include <boost_sml/logger.h>
+
+#include <boost_sml/sml.hpp>
 
 namespace sml_example {
 namespace sml = boost::sml;
 
 // Events
-struct Spin
-{
-};
+struct Spin {};
 
 // Actions
 const auto do_sense = []() { ROS_INFO("do_sense"); };
 const auto do_plan = []() { ROS_INFO("do_plan"); };
 const auto do_execute = []() { ROS_INFO("do_execute"); };
 
-struct StateMachineLogic
-{
-  auto operator()() const
-  {
+struct StateMachineLogic {
+  auto operator()() const {
     using sml::event;
     using sml::operator""_s;
     using sml::X;
