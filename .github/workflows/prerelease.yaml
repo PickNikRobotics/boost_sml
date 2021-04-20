@@ -22,7 +22,7 @@ jobs:
       BASEDIR: ${{ github.workspace }}/.work
       CCACHE_DIR: ${{ github.workspace }}/.ccache
 
-    name: "${{ matrix.distro }}"
+    name: ${{ matrix.distro }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
