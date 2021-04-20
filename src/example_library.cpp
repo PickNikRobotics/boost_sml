@@ -27,54 +27,42 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 /* Author: Tyler Weaver
-   Desc: [boost].SML ros logger
+   Desc: Simple example using the [boost].SML library
 */
-
-#pragma once
 
 // C++
 #include <string>
 
 // ROS
+#include <boost_sml/example.h>
 #include <ros/ros.h>
+using namespace sml_example;
 
-// [boost].SML
-#include <boost_sml/sml.hpp>
+int example_main(int argc, char** argv) {
+  const std::string node_name = "sml_example";
 
-// logger struct
-struct SmlRosLogger {
-  SmlRosLogger(const std::string& name) : name_(name) {}
+  // Initialize ROS
+  ros::init(argc, argv, node_name);
+  ROS_INFO_STREAM_NAMED(node_name, "Starting");
 
-  template <class SM, class TEvent>
-  void log_process_event(const TEvent&) {
-    ROS_DEBUG_NAMED(name_ + ".sm.process_event", "[%s][process_event] %s",
-                    boost::sml::aux::get_type_name<SM>(),
-                    boost::sml::aux::get_type_name<TEvent>());
+  ros::AsyncSpinner spinner(1);
+  spinner.start();
+
+  SmlRosLogger logger(node_name);
+  StateMachine state_machine{logger};
+  Spin spin{};
+
+  ros::Rate loop_rate(1);
+  while (ros::ok() && !state_machine.is(boost::sml::X)) {
+    state_machine.process_event(spin);
+    ros::spinOnce();
+    loop_rate.sleep();
   }
 
-  template <class SM, class TGuard, class TEvent>
-  void log_guard(const TGuard&, const TEvent&, bool result) {
-    ROS_DEBUG_NAMED(name_ + ".sm.guard", "[%s][guard] %s %s %s",
-                    boost::sml::aux::get_type_name<SM>(),
-                    boost::sml::aux::get_type_name<TGuard>(),
-                    boost::sml::aux::get_type_name<TEvent>(),
-                    (result ? "[OK]" : "[Reject]"));
-  }
+  // Shutdown
+  ROS_INFO_STREAM_NAMED(node_name, "Shutting down.");
+  spinner.stop();
+  ros::shutdown();
 
-  template <class SM, class TAction, class TEvent>
-  void log_action(const TAction&, const TEvent&) {
-    ROS_DEBUG_NAMED(name_ + ".sm.action", "[%s][action] %s %s",
-                    boost::sml::aux::get_type_name<SM>(),
-                    boost::sml::aux::get_type_name<TAction>(),
-                    boost::sml::aux::get_type_name<TEvent>());
-  }
-
-  template <class SM, class TSrcState, class TDstState>
-  void log_state_change(const TSrcState& src, const TDstState& dst) {
-    ROS_DEBUG_NAMED(name_ + ".sm.state_change", "[%s][transition] %s -> %s",
-                    boost::sml::aux::get_type_name<SM>(), src.c_str(),
-                    dst.c_str());
-  }
-
-  const std::string name_;
-};  // struct SmlRosLogger
+  return 0;
+}
