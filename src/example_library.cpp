@@ -27,42 +27,46 @@
 // POSSIBILITY OF SUCH DAMAGE.
 
 
-#pragma once
+/* Author: Tyler Weaver
+   Desc: Simple example using the [boost].SML library
+*/
 
-// [boost].SML
-#include <boost_sml/sml.hpp>
-#include <boost_sml/logger.h>
+// C++
+#include <string>
 
-namespace sml_example {
-namespace sml = boost::sml;
+// ROS
+#include <ros/ros.h>
 
-// Events
-struct Spin
+#include <boost_sml/example.h>
+using namespace sml_example;
+
+int example_main(int argc, char** argv)
 {
-};
+  const std::string node_name = "sml_example";
 
-// Actions
-const auto do_sense = []() { ROS_INFO("do_sense"); };
-const auto do_plan = []() { ROS_INFO("do_plan"); };
-const auto do_execute = []() { ROS_INFO("do_execute"); };
+  // Initialize ROS
+  ros::init(argc, argv, node_name);
+  ROS_INFO_STREAM_NAMED(node_name, "Starting");
 
-struct StateMachineLogic
-{
-  auto operator()() const
+  ros::AsyncSpinner spinner(1);
+  spinner.start();
+
+  SmlRosLogger logger(node_name);
+  StateMachine state_machine{ logger };
+  Spin spin{};
+
+  ros::Rate loop_rate(1);
+  while (ros::ok() && !state_machine.is(boost::sml::X))
   {
-    using sml::event;
-    using sml::operator""_s;
-    using sml::X;
-
-    // clang-format off
-    return sml::make_transition_table(
-      *"idle"_s     + event<Spin>              = "sensing"_s,
-      "sensing"_s   + event<Spin> / do_sense   = "planning"_s,
-      "planning"_s  + event<Spin> / do_plan    = "executing"_s,
-      "executing"_s + event<Spin> / do_execute = X);
+    state_machine.process_event(spin);
+    ros::spinOnce();
+    loop_rate.sleep();
   }
-};
 
-using StateMachine = sml::sm<StateMachineLogic, sml::logger<SmlRosLogger>>;
+  // Shutdown
+  ROS_INFO_STREAM_NAMED(node_name, "Shutting down.");
+  spinner.stop();
+  ros::shutdown();
 
-} // namespace sml_example
+  return 0;
+}

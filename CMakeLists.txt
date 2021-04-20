@@ -5,12 +5,6 @@ project(boost_sml)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
-# Warnings
-add_definitions(-W -Wall -Wextra
-  -Wwrite-strings -Wunreachable-code -Wpointer-arith
-  -Winit-self -Wredundant-decls
-  -Wno-unused-parameter -Wno-unused-function)
-
 # Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -25,7 +19,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 ###################################
 catkin_package(
   LIBRARIES
-    ${PROJECT_NAME}
+    ${PROJECT_NAME}_example
   CATKIN_DEPENDS
     roscpp
   INCLUDE_DIRS
@@ -50,18 +44,26 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+# Example Library that uses boost_sml
 add_library(
-  ${PROJECT_NAME}
-  src/example.cpp
+  ${PROJECT_NAME}_example
+  src/example_library.cpp
 )
-
 target_link_libraries(
-  ${PROJECT_NAME}
+  ${PROJECT_NAME}_example
   ${catkin_LIBRARIES}
   ${Boost_LIBRARIES}
 )
 
-add_executable(sml_graph_demo src/sml_graph_demo.cpp)
+# Example graph executable
+add_executable(sml_graph_demo
+  src/sml_graph_demo.cpp
+)
+target_link_libraries(
+  sml_graph_demo
+  ${catkin_LIBRARIES}
+  ${Boost_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -70,7 +72,8 @@ add_executable(sml_graph_demo src/sml_graph_demo.cpp)
 # Install library
 install(
   TARGETS
-    ${PROJECT_NAME}
+    ${PROJECT_NAME}_example
+    sml_graph_demo
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
