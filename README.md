@@ -20,4 +20,4 @@ License:
 
 > Note: this package has not been released yet
 
-    sudo apt-get install ros-${ROS_DISTRO}-boost_sml
+    sudo apt-get install ros-${ROS_DISTRO}-boost-sml
