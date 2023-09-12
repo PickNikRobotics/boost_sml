@@ -1,9 +1,5 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.10.2)
 project(boost_sml)
-
-# C++14
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 # Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS
