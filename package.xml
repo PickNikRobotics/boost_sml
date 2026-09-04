@@ -8,7 +8,7 @@
   <url>https://boost-experimental.github.io/sml/</url>
   <author>boost-experimental (https://github.com/boost-experimental)</author>
 
-  <license>BSD</license>
+  <license>BSD-3-Clause</license>
 
   <url type="website">https://github.com/PickNikRobotics/boost_sml</url>
   <url type="bugtracker">https://github.com/PickNikRobotics/boost_sml/issues</url>
